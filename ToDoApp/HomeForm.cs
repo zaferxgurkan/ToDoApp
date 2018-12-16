@@ -120,7 +120,7 @@ namespace ToDoApp
             cnn = new SqlConnection(connectionString);
             cnn.Open();
             var today = DateTime.Now;
-            string command = "Exec LISTTUR";
+            string command = "Exec TURLIST";
             SqlCommand cmd = new SqlCommand(command, cnn);
             
 
@@ -138,7 +138,7 @@ namespace ToDoApp
             cnn = new SqlConnection(connectionString);
             cnn.Open();
             var today = DateTime.Now;
-            string command = "EXEC SP_GETUSERID @id";
+            string command = "EXEC GETALLTASKS @id";
             SqlCommand cmd = new SqlCommand(command, cnn);
             cmd.Parameters.AddWithValue("@id", getID(username).ToString());
 
