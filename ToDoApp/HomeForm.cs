@@ -60,7 +60,7 @@ namespace ToDoApp
             cmd.CommandType = CommandType.Text;
             try
             {
-                
+
                 cmd.ExecuteNonQuery();
                 int TurID = GetTurID(turAd);
                 int TaskID = GetTaskID(task);
@@ -71,17 +71,17 @@ namespace ToDoApp
                 cmd.Parameters.AddWithValue("@taskID", TaskID.ToString());
                 cmd.ExecuteNonQuery();
                 checkedListBox1.Items.Clear();
-              
+
                 Today_List();
                 cnn.Close();
-                
+
             }
             catch (SqlException ex)
             {
                 MessageBox.Show("Hata : " + ex);
             }
 
-            
+
         }
         private int GetTurID(string turAd)
         {
@@ -177,6 +177,11 @@ namespace ToDoApp
         private void button2_Click(object sender, EventArgs e)
         {
             MessageBox.Show(getID().ToString());
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+           
         }
 
         private void button1_Click(object sender, EventArgs e)
