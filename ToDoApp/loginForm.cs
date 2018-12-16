@@ -54,7 +54,8 @@ namespace ToDoApp
                     da.Fill(dt);
                     if (dt.Rows.Count > 0)
                     {
-                        MessageBox.Show("Giris Basarılı");
+                        HomeForm homeForm = new HomeForm(userName_Email);
+                        homeForm.Show();
                     }
                     else
                     {
@@ -89,6 +90,9 @@ namespace ToDoApp
         {
             txtbx_pass.PasswordChar = '*';
             txtbx_pass.MaxLength = 14;
+            txtbx_userName.Text = "zaferxgurkan";
+            txtbx_pass.Text = "123456";
+
         }
 
         private void link_lbl_singup_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
