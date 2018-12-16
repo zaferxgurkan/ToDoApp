@@ -13,6 +13,7 @@ namespace ToDoApp
 {
     public partial class loginForm : Form
     {
+        HomeForm hm = new HomeForm(null);
         string userName_Email, password;
         bool durum=false;
         string connectionString = "Data Source=DESKTOP-9K28DPD\\SQLEXPRESS;Initial Catalog=ToDoDB;Integrated Security=True;Pooling=False";
@@ -54,7 +55,13 @@ namespace ToDoApp
                     da.Fill(dt);
                     if (dt.Rows.Count > 0)
                     {
+                        cnn.Open();
+                        command = "Update Tbl_Users set onlined = 1 where Id=@userID";
+                        cmd = new SqlCommand(command, cnn);
+                        cmd.Parameters.AddWithValue("@userID", hm.getID(txtbx_userName.Text).ToString());
+                        cmd.ExecuteNonQuery();
                         HomeForm homeForm = new HomeForm(userName_Email);
+                        cnn.Close();
                         homeForm.Show();
                     }
                     else

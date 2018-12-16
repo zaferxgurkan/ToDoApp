@@ -44,6 +44,7 @@
             this.txtbx_Today = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.btn_cikis = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
@@ -196,11 +197,22 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Yarın";
             // 
+            // btn_cikis
+            // 
+            this.btn_cikis.Location = new System.Drawing.Point(13, 11);
+            this.btn_cikis.Name = "btn_cikis";
+            this.btn_cikis.Size = new System.Drawing.Size(75, 23);
+            this.btn_cikis.TabIndex = 3;
+            this.btn_cikis.Text = "Çıkış Yap";
+            this.btn_cikis.UseVisualStyleBackColor = true;
+            this.btn_cikis.Click += new System.EventHandler(this.btn_cikis_Click);
+            // 
             // HomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btn_cikis);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "HomeForm";
@@ -231,5 +243,6 @@
         private System.Windows.Forms.CheckedListBox checkedListBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button btn_cikis;
     }
 }

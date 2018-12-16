@@ -56,7 +56,7 @@ namespace ToDoApp
             SqlCommand cmd = new SqlCommand(command, cnn);
             cmd.Parameters.AddWithValue("@task", task);
             cmd.Parameters.AddWithValue("@date", today);
-            cmd.Parameters.AddWithValue("@id", getID().ToString());
+            cmd.Parameters.AddWithValue("@id", getID(username).ToString());
             cmd.CommandType = CommandType.Text;
             try
             {
@@ -88,7 +88,7 @@ namespace ToDoApp
             int id = 0;
             cnn = new SqlConnection(connectionString);
             cnn.Open();
-            string command = "Select Id FROM Tbl_Tur WHERE turAd = @turAd";
+            string command = "Exec GETTURID @turAd";
             SqlCommand cmd = new SqlCommand(command, cnn);
             cmd.Parameters.AddWithValue("@turAd", turAd);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -104,7 +104,7 @@ namespace ToDoApp
             int id = 0;
             cnn = new SqlConnection(connectionString);
             cnn.Open();
-            string command = "Select Id FROM Tbl_Tasks WHERE task = @task";
+            string command = "Exec GETTASKID @task";
             SqlCommand cmd = new SqlCommand(command, cnn);
             cmd.Parameters.AddWithValue("@task", task);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -120,7 +120,7 @@ namespace ToDoApp
             cnn = new SqlConnection(connectionString);
             cnn.Open();
             var today = DateTime.Now;
-            string command = "Select * from Tbl_Tur";
+            string command = "Exec LISTTUR";
             SqlCommand cmd = new SqlCommand(command, cnn);
             
 
@@ -138,9 +138,9 @@ namespace ToDoApp
             cnn = new SqlConnection(connectionString);
             cnn.Open();
             var today = DateTime.Now;
-            string command = "Select * from Tbl_Tasks where userID = @id";
+            string command = "EXEC SP_GETUSERID @id";
             SqlCommand cmd = new SqlCommand(command, cnn);
-            cmd.Parameters.AddWithValue("@id", getID().ToString());
+            cmd.Parameters.AddWithValue("@id", getID(username).ToString());
 
             SqlDataReader rdr = cmd.ExecuteReader();
             while (rdr.Read())
@@ -158,7 +158,7 @@ namespace ToDoApp
             Tur_List();
             comboBox1.SelectedIndex = 0; 
         }
-        private int getID()
+        public int getID(string username)
         {
             int id = 0;
             cnn = new SqlConnection(connectionString);
@@ -176,12 +176,22 @@ namespace ToDoApp
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(getID().ToString());
+            MessageBox.Show(getID(username).ToString());
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
            
+        }
+
+        private void btn_cikis_Click(object sender, EventArgs e)
+        {
+            cnn.Open();
+            string command = "Update Tbl_Users set onlined = 0 where Id=@userID";
+            SqlCommand cmd = new SqlCommand(command, cnn);
+            cmd.Parameters.AddWithValue("@userID", getID(username).ToString());
+            cmd.ExecuteNonQuery();
+            this.Close();
         }
 
         private void button1_Click(object sender, EventArgs e)
